@@ -4,7 +4,7 @@ services:
   app:
     build: .
     ports:
-      - "1337:80"
+      - "80:80"
       - "7331:7331"
       - "5858:5858"
       - "9229:9229"
@@ -14,6 +14,7 @@ services:
     entrypoint:
       - npm
       - start
+      - /docker-entrypoint.sh
       
 volumes:
   reserved:
