@@ -22,4 +22,5 @@ jobs:
         name: maulanadsgn/devopstest
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        registry: https://hub.docker.com/u/maulanadsgn 
 
