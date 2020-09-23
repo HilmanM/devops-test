@@ -13,15 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Login to DockerHub
+    - uses: docker/login-action@v1
+      with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag devopstest:$(date +%s)
-    - uses: docker/build-push-action@v1.1.1
-      with:
-        # Username used to log in to a Docker registry. If not set then no login will occur
-        username: ${{ secrets.DOCKER_USERNAME }}
-        # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        # Server address of Docker registry. If not set then will default to Docker Hub
-        repository: maulanadsgn/devopstest
-        run: docker push maulanadsgn/devopstest:latest 
+    - name: Push to dockerhub
+      run: docker push maulanadsgn/devopstest:latest
